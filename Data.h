@@ -21,19 +21,20 @@ public:
 	const unsigned chairwomen = 2;
 
 
-	const unsigned addingTaskTime = 1000; //ms
-	const unsigned doingTaskTime = 1200; //ms
+	const unsigned addingTaskTime = 800; //ms
+	const unsigned doingTaskTime = 1000; //ms
 
-	const unsigned cleaningTime = 1200; //ms
-	const unsigned takingToiletTime = 1800; //ms
+	const unsigned cleaningTime = 800; //ms
+	const unsigned takingToiletTime = 600; //ms
 
-	const unsigned makingCoffeeTime = 1000; //ms
-	const unsigned takingCoffeeTime = 800; //ms
+	const unsigned makingCoffeeTime = 1200; //ms
+	const unsigned takingCoffeeTime = 1000; //ms
 
-	const unsigned parkingCarTime = 1600; //ms
-	const unsigned takingCarTime = 600; //ms
+	const unsigned parkingCarTime = 3600; //ms
+	const unsigned takingCarTime = 1000; //ms
 
-	const unsigned goingThroughDoorTime = 400; //ms
+	const unsigned goingThroughDoorTime = 2000; //ms
+	const unsigned goingThroughTheDoorTime = 1600; //ms
 
 	const unsigned maxTasks = 50;
 	const unsigned minTasks = 0;

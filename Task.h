@@ -38,8 +38,8 @@ public:
 	void showState() {
 		unique_lock<mutex> lock(mu);
 		stringstream s;
-		s << "Do wykonania zostalo:  " << tasks.size() << " zadan!" << endl;
-		Terminal::terminal().printTasks(s.str());
+		s << "Ilosc zadan:  " << tasks.size();
+		Terminal::terminal().update2("zadania" , s.str() , tasks.size());
 		lock.unlock();
 
 	}

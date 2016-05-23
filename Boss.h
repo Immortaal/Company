@@ -25,10 +25,11 @@ private:
 			c.takeCoffee();
 			logTakingCoffee();
 
-		//	s << "Szef " << id << " czeka by przejsc przez drzwi." << endl;
-			//Terminal::terminal().print("forester", s.str(), id);
-		//	d.goThroughTheDoor("Szef", this->id);
-		//	logGoingThroughDoor();
+stringstream ss;
+			ss << "Szef " << id << " czeka by przejsc przez drzwi." << endl;
+			Terminal::terminal().print("szefowie", ss.str(), id);
+			d.goThroughTheDoor("Szef", this->id);
+			logGoingThroughDoor();
 		}
 	}
 	void logTakingCoffee() {
@@ -47,10 +48,10 @@ private:
 		unsigned parts = Data::getData().updateParts;
 		unsigned goingThroughDoorTime = Data::getData().goingThroughDoorTime;
 		stringstream s;
-		s << "Szef " << id << " przechodzi przez drzwi" << endl;
+		s << "Szef " << id << " przechodzi przez drzwi";
 
 		for (unsigned i = 1; i <= parts; i++) {
-			//Terminal::terminal().update("szefowie", s.str(), i*(100 / parts), id);
+			Terminal::terminal().update("szefowie", s.str(), i*(100 / parts), id);
 			this_thread::sleep_for(chrono::milliseconds(goingThroughDoorTime / parts));
 
 		}

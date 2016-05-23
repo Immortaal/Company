@@ -32,7 +32,7 @@ private:
 	void init() {
 	for (unsigned i = 0; i < Data::getData().managers; i++) {
 		ManagerPtr manager { new Manager {i, task, bathroom, parkingSpace, door} };
-	manager->start();
+		manager->start();
 		managers.push_back(move(manager));
 	}
 
@@ -45,7 +45,7 @@ private:
 
 	for (unsigned i = 0; i < Data::getData().chairwomen; i++) {
 		CharwomanPtr charwoman{ new Charwoman {i, bathroom} };
-	//	charwoman->start();
+		charwoman->start();
 		charwomen.push_back(move(charwoman));
 	}
 

@@ -32,29 +32,29 @@ private:
 		for (unsigned i = 0; ; i++) {
 			stringstream s;
 
-		//	s << "Manager " << id << " czeka by zaparkowac auto."<<endl;
+			s << "Manager " << id << " czeka by zaparkowac auto."<<endl;
+			Terminal::terminal().print("managerzy", s.str(), id);
+			p.parkCar("Manager", this->id);
+			logParkingCar();
 
-		//	Terminal::terminal().print("menagerzy", s.str(), id);
-		//	p.parkCar("Manager", this->id);
-		//	logParkingCar();
-
-			s << "Manager " << id << " czeka by zlecic nowe zadanie."<<endl;
-			Terminal::terminal().print("menagerzy", s.str(), id);
+stringstream ss;
+			ss << "Manager " << id << " czeka by zlecic nowe zadanie."<<endl;
+			Terminal::terminal().print("managerzy", ss.str(), id);
 			t.addTask();
 			logAddingTask();
 
-		//	cout << "Manager " << id << " czeka by skorzystac z toalety."<<endl;
-			//Terminal::terminal().print("menagerzy", s.str(), id);
-	//		b.takeToilet("Manager" , this->id);
-		//	logTakingToilet();
-
-		//	cout << "Manager " << id << " czeka by przejsc przez drzwi."<<endl;
-			//Terminal::terminal().print("menagerzy", s.str(), id);
+		//	s << "Manager " << id << " czeka by przejsc przez drzwi."<<endl;
+		//	Terminal::terminal().print("managerzy", s.str(), id);
 		//	d.goThroughTheDoor("Manager", this->id);
 		//	logGoingThroughDoor();
 
-		//	cout << "Manager " << id << " czeka by odjechac z parkingu."<<endl;
-			//Terminal::terminal().print("menagerzy", s.str(), id);
+	//		s << "Manager " << id << " czeka by skorzystac z toalety."<<endl;
+	//		Terminal::terminal().print("managerzy", s.str(), id);
+		//	b.takeToilet("Manager" , this->id);
+		//	logTakingToilet();
+
+		//	s << "Manager " << id << " czeka by odjechac z parkingu."<<endl;
+		//	Terminal::terminal().print("managerzy", s.str(), id);
 		//	p.takeCar("Manager", this->id);
 		//	logTakingCar();
 
@@ -79,10 +79,10 @@ private:
 		unsigned parts = Data::getData().updateParts;
 		unsigned takingToiletTime = Data::getData().takingToiletTime;
 		stringstream s;
-	//	cout << "Manager " << id << " korzysta z toalety"<<endl;
+		s << "Manager " << id << " korzysta z toalety";
 
 		for (unsigned i = 1; i <= parts; i++) {
-		//	Terminal::terminal().update("menagerzy", s.str(), i*(100 / parts), id);
+			Terminal::terminal().update("managerzy", s.str(), i*(100 / parts), id);
 			this_thread::sleep_for(chrono::milliseconds(takingToiletTime / parts));
 
 		}
@@ -92,10 +92,10 @@ private:
 		unsigned parts = Data::getData().updateParts;
 		unsigned goingThroughDoorTime = Data::getData().goingThroughDoorTime;
 		stringstream s;
-	//	cout << "Manager " << id << " przechodzi przez drzwi"<<endl;
+		s << "Manager " << id << " przechodzi przez drzwi";
 
 		for (unsigned i = 1; i <= parts; i++) {
-		//	Terminal::terminal().update("menagerzy", s.str(), i*(100 / parts), id);
+			Terminal::terminal().update("managerzy", s.str(), i*(100 / parts), id);
 			this_thread::sleep_for(chrono::milliseconds(goingThroughDoorTime / parts));
 
 		}
@@ -105,10 +105,10 @@ private:
 		unsigned parts = Data::getData().updateParts;
 		unsigned parkingCarTime = Data::getData().parkingCarTime;
 		stringstream s;
-	//	cout << "Manager " << id << " parkuje auto"<<endl;
+		s << "Manager " << id << " parkuje auto";
 
 		for (unsigned i = 1; i <= parts; i++) {
-		//	Terminal::terminal().update("menagerzy", s.str(), i*(100 / parts), id);
+			Terminal::terminal().update("managerzy", s.str(), i*(100 / parts), id);
 			this_thread::sleep_for(chrono::milliseconds(parkingCarTime / parts));
 
 		}
@@ -118,10 +118,10 @@ private:
 		unsigned parts = Data::getData().updateParts;
 		unsigned takingCarTime = Data::getData().takingCarTime;
 		stringstream s;
-	//	cout << "Manager " << id << " odjezdza z parkingu"<<endl;
+		s << "Manager " << id << " odjezdza z parkingu";
 
 		for (unsigned i = 1; i <= parts; i++) {
-		//	Terminal::terminal().update("menagerzy", s.str(), i*(100 / parts), id);
+			Terminal::terminal().update("managerzy", s.str(), i*(100 / parts), id);
 			this_thread::sleep_for(chrono::milliseconds(takingCarTime / parts));
 
 		}

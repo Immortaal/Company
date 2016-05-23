@@ -5,6 +5,8 @@
 #include <sstream>
 #include <memory>
 
+#include "Terminal.h"
+
 using namespace std;
 
 class Bathroom
@@ -21,8 +23,8 @@ public:
 		freeClean.wait(lock, [this]() {return this->busy == 0; });
 		stringstream s;
 		busy = 1;
-	//	cout << who << " " << id << " sprzata lazienke! Lazienka zajeta!" << endl;
-		//	Terminal::terminal().printForrest(s.str());
+		s << who << " " << id << " sprzata lazienke! Lazienka zajeta!" << endl;
+		Terminal::terminal().print("lazienka" , s.str(), 0);
 		lock.unlock();
 
 		freeToilet.notify_one();
@@ -32,8 +34,8 @@ public:
 		freeToilet.wait(lock, [this]() {return this->busy == 1; });
 		stringstream s;
 		busy = 0;
-	//	cout << who << " " << id << " korzysta z lazienki! Lazienka zajeta!" << endl;
-		//	Terminal::terminal().printForrest(s.str());
+		s << who << " " << id << " korzysta z lazienki! Lazienka zajeta!" << endl;
+		Terminal::terminal().print("lazienka" , s.str(), 0);
 		lock.unlock();
 
 		freeClean.notify_one();

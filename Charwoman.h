@@ -5,6 +5,7 @@
 
 #include "Bathroom.h"
 #include "Data.h"
+#include "Terminal.h"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ private:
 			stringstream s;
 
 			s << "Sprzataczka " << id << " czeka by posprzatac lazienke." << endl;
-			//Terminal::terminal().print("forester", s.str(), id);
+			Terminal::terminal().print("sprzataczki", s.str(), id);
 			b.cleanToilet("Sprzataczka", this->id);
 			log();
 		}
@@ -28,10 +29,10 @@ private:
 		unsigned parts = Data::getData().updateParts;
 		unsigned cleaningTime = Data::getData().cleaningTime;
 		stringstream s;
-		s << "Sprzataczka " << id << " sprzata lazienke" << endl;
+		s << "Sprzataczka " << id << " sprzata lazienke";
 
 		for (unsigned i = 1; i <= parts; i++) {
-			//Terminal::terminal().update("forester", s.str(), i*(100 / parts), id);
+			Terminal::terminal().update("sprzataczki", s.str(), i*(100 / parts), id);
 			this_thread::sleep_for(chrono::milliseconds(cleaningTime / parts));
 
 		}

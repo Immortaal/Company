@@ -15,16 +15,16 @@ private:
 	mutex mu;
 	condition_variable freeParkingSpace;
 	condition_variable fullParkingSpace;
-	unsigned parkingSpaceNumber;
+	unsigned parkingSpaceNumber; // liczba wolnych miejsc parkingowych
 public:
 	ParkingSpace() { this->parkingSpaceNumber = Data::getData().parkingSpacesNumber; }
 	void parkCar(string who, unsigned id) {
 		unique_lock<mutex> lock(mu);
 		freeParkingSpace.wait(lock, [this]() {return this->parkingSpaceNumber > 0; });
 		stringstream s;
-	//	cout << who << " " << id << " zaparkowal swoj samochod!" << endl;
+		s << who << " " << id << " zaparkowal swoj samochod! " << "Ilosc wolnych miejsc: " << this->parkingSpaceNumber <<endl;
 		--this->parkingSpaceNumber;
-		//	Terminal::terminal().printForrest(s.str());
+		Terminal::terminal().print("miejscaparkingowe" , s.str(), 0);
 		lock.unlock();
 
 		fullParkingSpace.notify_one();
@@ -33,9 +33,9 @@ public:
 		unique_lock<mutex> lock(mu);
 		fullParkingSpace.wait(lock, [this]() {return this->parkingSpaceNumber < Data::getData().parkingSpacesNumber; });
 		stringstream s;
-	//	cout << who << " " << id << " odjechal z parkingu!" << endl;
+		s << who << " " << id << " odjechal z parkingu! " << "Ilosc wolnych miejsc: " << this->parkingSpaceNumber <<endl;
 		++this->parkingSpaceNumber;
-		//	Terminal::terminal().printForrest(s.str());
+		Terminal::terminal().print("miejscaparkingowe" , s.str(), 0);
 		lock.unlock();
 
 		freeParkingSpace.notify_one();

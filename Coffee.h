@@ -41,7 +41,7 @@ public:
 	void showState() {
 		unique_lock<mutex> lock(mu);
 		stringstream s;
-		cout << "W kuchni zostalo:  " << coffees.size() << " kaw!";
+		s << "Ilosc kaw:  " << coffees.size() << endl;
 		Terminal::terminal().print("kawa" , s.str(), 0);
 		lock.unlock();
 	}

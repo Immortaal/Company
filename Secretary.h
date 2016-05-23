@@ -20,9 +20,9 @@ private:
 		for (unsigned i = 0; ; i++) {
 			stringstream s;
 
-		//	s << "Sekretarka " << id << " czeka by zaparkowac auto." << endl;
-			//Terminal::terminal().print("forester", s.str(), id);
-		//	p.parkCar("Sekretarka", this->id);
+//			s << "Sekretarka " << id << " czeka by zaparkowac auto." << endl;
+	///		Terminal::terminal().print("sekretarki", s.str(), id);
+	//		p.parkCar("Sekretarka", this->id);
 		//	logParkingCar();
 
 			s << "Sekretarka " << id << " czeka by zrobic kawe." << endl;
@@ -30,10 +30,11 @@ private:
 			c.makeCoffee();
 			logMakingCoffee();
 
-	//		s << "Sekretarka " << id << " czeka by odjechac z parkingu." << endl;
-			//Terminal::terminal().print("forester", s.str(), id);
-		//	p.takeCar("Sekretarka", this->id);
-		//	logTakingCar();
+stringstream ss;
+			ss << "Sekretarka " << id << " czeka by odjechac z parkingu." << endl;
+			Terminal::terminal().print("sekretarki", ss.str(), id);
+			p.takeCar("Sekretarka", this->id);
+			logTakingCar();
 		}
 	}
 	void logMakingCoffee() {
@@ -52,10 +53,10 @@ private:
 		unsigned parts = Data::getData().updateParts;
 		unsigned parkingCarTime = Data::getData().parkingCarTime;
 		stringstream s;
-		s << "Sekretarka " << id << " parkuje auto" << endl;
+		s << "Sekretarka " << id << " parkuje auto";
 
 		for (unsigned i = 1; i <= parts; i++) {
-			//Terminal::terminal().update("forester", s.str(), i*(100 / parts), id);
+			Terminal::terminal().update("sekretarki", s.str(), i*(100 / parts), id);
 			this_thread::sleep_for(chrono::milliseconds(parkingCarTime / parts));
 
 		}
@@ -64,10 +65,10 @@ private:
 		unsigned parts = Data::getData().updateParts;
 		unsigned takingCarTime = Data::getData().takingCarTime;
 		stringstream s;
-		s << "Sekretarka " << id << " odjezdza z parkingu" << endl;
+		s << "Sekretarka " << id << " odjezdza z parkingu";
 
 		for (unsigned i = 1; i <= parts; i++) {
-			//Terminal::terminal().update("forester", s.str(), i*(100 / parts), id);
+			Terminal::terminal().update("sekretarki", s.str(), i*(100 / parts), id);
 			this_thread::sleep_for(chrono::milliseconds(takingCarTime / parts));
 
 		}

@@ -24,7 +24,12 @@ private:
 		for (unsigned i = 0; ; i++) {
 			stringstream s;
 
-		////	s << "Pracownik " << id << " czeka by zaparkowac auto."<<endl;
+		//	s << "Pracownik " << id << " czeka by odjechac z parkingu."<<endl;
+		//	Terminal::terminal().print("pracownicy", s.str(), id);
+		//	p.takeCar("Pracownik", this->id);
+		//	logTakingCar();
+
+		///	s << "Pracownik " << id << " czeka by zaparkowac auto."<<endl;
 		//	Terminal::terminal().print("pracownicy", s.str(), id);
 		//	p.parkCar("Pracownik", this->id);
 		//	logParkingCar();
@@ -34,20 +39,18 @@ private:
 			t.getTask();
 			logDoingTask();
 
-	//		s << "Pracownik " << id << " czeka by umyc rece."<<endl;
-	//		Terminal::terminal().print("pracownicy", s.str(), id);
-	//		b.takeToilet("Pracownik", this->id);
-	//		logTakingToiletTime();
+stringstream ss;
+			ss << "Pracownik " << id << " czeka by umyc rece."<<endl;
+			Terminal::terminal().print("pracownicy", ss.str(), id);
+			b.takeToilet("Pracownik", this->id);
+			logTakingToiletTime();
 
-	//		s << "Pracownik " << id << " czeka by przejsc przez drzwi."<<endl;
-	//		Terminal::terminal().print("pracownicy", s.str(), id);
-	//		d.goThroughTheDoor("Pracownik", this->id);
-		//	logGoingThroughDoor();
+stringstream sss;
+			sss << "Pracownik " << id << " czeka by przejsc przez drzwi."<<endl;
+			Terminal::terminal().print("pracownicy", sss.str(), id);
+			d.goThroughDoor("Pracownik", this->id);
+			logGoingThroughDoor();
 
-		//	s << "Pracownik " << id << " czeka by odjechac z parkingu."<<endl;
-		//	Terminal::terminal().print("pracownicy", s.str(), id);
-		//	p.takeCar("Pracownik", this->id);
-		//	logTakingCar();
 
 
 		}
@@ -68,7 +71,7 @@ private:
 		unsigned parts = Data::getData().updateParts;
 		unsigned takingToiletTime = Data::getData().takingToiletTime;
 		stringstream s;
-		s << "Pracownik " << id << " myje rece" << endl;
+		s << "Pracownik " << id << " myje rece";
 
 		for (unsigned i = 1; i <= parts; i++) {
 			Terminal::terminal().update("pracownicy", s.str(), i*(100 / parts), id);
@@ -78,9 +81,9 @@ private:
 	}
 	void logGoingThroughDoor() {
 		unsigned parts = Data::getData().updateParts;
-		unsigned goingThroughDoorTime = Data::getData().goingThroughDoorTime;
+		unsigned goingThroughDoorTime = Data::getData().goingThroughTheDoorTime;
 		stringstream s;
-		s << "Pracownik " << id << " przechodzi przez drzwi"<<endl;
+		s << "Pracownik " << id << " przechodzi przez drzwi";
 
 		for (unsigned i = 1; i <= parts; i++) {
 			Terminal::terminal().update("pracownicy", s.str(), i*(100 / parts), id);
@@ -92,7 +95,7 @@ private:
 		unsigned parts = Data::getData().updateParts;
 		unsigned parkingCarTime = Data::getData().parkingCarTime;
 		stringstream s;
-	s << "Pracownik " << id << " parkuje auto"<<endl;
+	s << "Pracownik " << id << " parkuje auto";
 
 		for (unsigned i = 1; i <= parts; i++) {
 			Terminal::terminal().update("pracownicy", s.str(), i*(100 / parts), id);
@@ -104,7 +107,7 @@ private:
 		unsigned parts = Data::getData().updateParts;
 		unsigned takingCarTime = Data::getData().takingCarTime;
 		stringstream s;
-		s << "Pracownik " << id << " odjezdza z parkingu"<<endl;
+		s << "Pracownik " << id << " odjezdza z parkingu";
 
 		for (unsigned i = 1; i <= parts; i++) {
 			Terminal::terminal().update("pracownicy", s.str(), i*(100 / parts), id);
