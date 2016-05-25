@@ -22,7 +22,7 @@ public:
 	Coffee() : coffees(deque<int>(0, 1)) {}
 	void makeCoffee() {
 		unique_lock<mutex> lock(mu);
-		not_full.wait(lock, [this]() {return coffees.size() < Data::getData().maxCoffees; });
+		not_full.wait(lock, [this]() {return coffees.size() < 20; });
 		coffees.push_front(1);
 		lock.unlock();
 
@@ -31,7 +31,7 @@ public:
 	}
 	void takeCoffee() {
 		unique_lock<mutex> lock(mu);
-		not_empty.wait(lock, [this]() {return coffees.size() > Data::getData().minCoffees; });
+		not_empty.wait(lock, [this]() {return coffees.size() > 0; });
 		coffees.pop_back();
 		lock.unlock();
 
@@ -41,8 +41,8 @@ public:
 	void showState() {
 		unique_lock<mutex> lock(mu);
 		stringstream s;
-		s << "Ilosc kaw:  " << coffees.size() << endl;
-		Terminal::terminal().print("kawa" , s.str(), 0);
+		s << "Ilosc kaw:  " << coffees.size();
+		Terminal::terminal().displayState("kawa" , s.str() , coffees.size(), '@');
 		lock.unlock();
 	}
 };

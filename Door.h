@@ -25,8 +25,8 @@ public:
 		freeDoor.wait(lock, [this]() {return this->busy == 1; });
 		stringstream s;
 		busy = 0;
-		s <<who << " " << id << " przechodzi przez drzwi! Drzwi zajete!" << endl;
-		Terminal::terminal().print("drzwi", s.str(), 0);
+		s <<who << " " << id << " przeszedl przez drzwi! Drzwi wolne!" << endl;
+		Terminal::terminal().display("drzwi", s.str(), 0);
 		lock.unlock();
 
 		freeDoors.notify_one();
@@ -38,7 +38,7 @@ public:
 		stringstream s;
 		busy = 1;
 		s <<who << " " << id << " przechodzi przez drzwi! Drzwi zajete!" << endl;
-		Terminal::terminal().print("drzwi", s.str(), 0);
+		Terminal::terminal().display("drzwi", s.str(), 0);
 		lock.unlock();
 
 		freeDoor.notify_one();

@@ -30,33 +30,31 @@ private:
 	vector<WorkerPtr> workers;
 
 	void init() {
-	for (unsigned i = 0; i < Data::getData().managers; i++) {
+	for (unsigned i = 0; i < 5; i++) {
 		ManagerPtr manager { new Manager {i, task, bathroom, parkingSpace, door} };
 		manager->start();
 		managers.push_back(move(manager));
 	}
 
-	for (unsigned i = 0; i < Data::getData().bosses; i++) {
+	for (unsigned i = 0; i < 2; i++) {
 		BossPtr boss { new Boss {i, door, coffee} };
 		boss->start();
 		bosses.push_back(move(boss));
-	//	bosses[i]->start();
 	}
 
-	for (unsigned i = 0; i < Data::getData().chairwomen; i++) {
+	for (unsigned i = 0; i < 2; i++) {
 		CharwomanPtr charwoman{ new Charwoman {i, bathroom} };
 		charwoman->start();
 		charwomen.push_back(move(charwoman));
 	}
 
-	for (unsigned i = 0; i < Data::getData().secretaries; i++) {
+	for (unsigned i = 0; i < 2; i++) {
 		SecretaryPtr secretary { new Secretary {i, parkingSpace, coffee} };
 		secretary->start();
 		secretaries.push_back(move(secretary));
-	//	secretaries[i]->start();
 	}
 
-	for (unsigned i = 0; i < Data::getData().workers; i++) {
+	for (unsigned i = 0; i < 5; i++) {
 		WorkerPtr worker{ new Worker {i, task, bathroom, parkingSpace, door} };
 		worker->start();
 		workers.push_back(move(worker));

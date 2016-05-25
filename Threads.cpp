@@ -10,16 +10,11 @@ std::mutex mu2;
 std::condition_variable cond;
 */
 
-
-
 // to avoid deadlock
 // 1. prefer locking single mutex
 // 2. avoid locking a mutex and then calling a user provided function
 // 3. use std::lock() to lock more than one mutex
 // 4. lock the mutex in same order for all threads
-
-
-
 
 //std::lock(mu, mu2); // to avoid deadlock
 // mutex is used for synchronizing
@@ -86,5 +81,4 @@ int main()
   return 0;
 }
 
-// deque - kolejka dwukierunkowa
 //std::this_thread::sleep_for(chrono::seconds(1)); usypianie biezacego watku

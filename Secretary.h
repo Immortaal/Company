@@ -18,57 +18,41 @@ private:
 	std::thread thread;
 	void work() {
 		for (unsigned i = 0; ; i++) {
+
 			stringstream s;
-
-//			s << "Sekretarka " << id << " czeka by zaparkowac auto." << endl;
-	///		Terminal::terminal().print("sekretarki", s.str(), id);
-	//		p.parkCar("Sekretarka", this->id);
-		//	logParkingCar();
-
 			s << "Sekretarka " << id << " czeka by zrobic kawe." << endl;
-			Terminal::terminal().print("sekretarki", s.str(), id);
+			Terminal::terminal().display("sekretarki", s.str(), id);
 			c.makeCoffee();
 			logMakingCoffee();
 
-stringstream ss;
+			stringstream ss;
 			ss << "Sekretarka " << id << " czeka by odjechac z parkingu." << endl;
-			Terminal::terminal().print("sekretarki", ss.str(), id);
+			Terminal::terminal().display("sekretarki", ss.str(), id);
 			p.takeCar("Sekretarka", this->id);
 			logTakingCar();
 		}
 	}
 	void logMakingCoffee() {
-		unsigned parts = Data::getData().updateParts;
+		unsigned parts = Data::getData().percent;
 		unsigned makingCoffeeTime = Data::getData().makingCoffeeTime;
 		stringstream s;
 		s << "Sekretarka " << id << " robi kawe";
 
 		for (unsigned i = 1; i <= parts; i++) {
-			Terminal::terminal().update("sekretarki", s.str(), i*(100 / parts), id);
+			Terminal::terminal().displayMove("sekretarki", s.str(), i*(100 / parts), id);
 			this_thread::sleep_for(chrono::milliseconds(makingCoffeeTime / parts));
 
 		}
 	}
-	void logParkingCar() {
-		unsigned parts = Data::getData().updateParts;
-		unsigned parkingCarTime = Data::getData().parkingCarTime;
-		stringstream s;
-		s << "Sekretarka " << id << " parkuje auto";
 
-		for (unsigned i = 1; i <= parts; i++) {
-			Terminal::terminal().update("sekretarki", s.str(), i*(100 / parts), id);
-			this_thread::sleep_for(chrono::milliseconds(parkingCarTime / parts));
-
-		}
-	}
 	void logTakingCar() {
-		unsigned parts = Data::getData().updateParts;
+		unsigned parts = Data::getData().percent;
 		unsigned takingCarTime = Data::getData().takingCarTime;
 		stringstream s;
 		s << "Sekretarka " << id << " odjezdza z parkingu";
 
 		for (unsigned i = 1; i <= parts; i++) {
-			Terminal::terminal().update("sekretarki", s.str(), i*(100 / parts), id);
+			Terminal::terminal().displayMove("sekretarki", s.str(), i*(100 / parts), id);
 			this_thread::sleep_for(chrono::milliseconds(takingCarTime / parts));
 
 		}

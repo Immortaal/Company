@@ -15,24 +15,25 @@ private:
 	unsigned id;
 	Bathroom& b;
 	std::thread thread;
+
 	void work() {
 		for (unsigned i = 0; ; i++) {
 			stringstream s;
 
 			s << "Sprzataczka " << id << " czeka by posprzatac lazienke." << endl;
-			Terminal::terminal().print("sprzataczki", s.str(), id);
+			Terminal::terminal().display("sprzataczki", s.str(), id);
 			b.cleanToilet("Sprzataczka", this->id);
 			log();
 		}
 	}
 	void log() {
-		unsigned parts = Data::getData().updateParts;
+		unsigned parts = Data::getData().percent;
 		unsigned cleaningTime = Data::getData().cleaningTime;
 		stringstream s;
 		s << "Sprzataczka " << id << " sprzata lazienke";
 
 		for (unsigned i = 1; i <= parts; i++) {
-			Terminal::terminal().update("sprzataczki", s.str(), i*(100 / parts), id);
+			Terminal::terminal().displayMove("sprzataczki", s.str(), i*(100 / parts), id);
 			this_thread::sleep_for(chrono::milliseconds(cleaningTime / parts));
 
 		}
